@@ -41,7 +41,9 @@
 class Multiplier:
     def __init__(self):
         # Tables of x**2/64 % 256
-        self.__table_plus = [ round(x**2/64) % 256 for x in range(0,511) ]
+        # Technically speaking, the tables need to be 511 bytes long,
+        # it's just more conveninent later one like that.
+        self.__table_plus = [ round(x**2/64) % 256 for x in range(0,512) ]
         self.__table_minus = [ round(x**2/64) % 256 for x in range(-256,256) ]
 
     def multiply(self, A, B):
@@ -66,6 +68,12 @@ class Multiplier:
                 errs[e] = errs.get(e, 0) + 1
         return errs
 
+    def dump_c_tables(self):
+        print("unsigned char ref_table_plus[] = {{{}}};".format(
+            ','.join((str(i) for i in self.__table_plus))))
+        print("unsigned char ref_table_minus[] = {{{}}};".format(
+            ','.join((str(i) for i in self.__table_minus))))
+
 
 mul = Multiplier()
 errs = mul.errors()
@@ -73,3 +81,6 @@ errs = mul.errors()
 print("Errors distribution:")
 for k in sorted(errs.keys()):
     print(k, errs[k])
+
+print("\nC tables:")
+mul.dump_c_tables()
