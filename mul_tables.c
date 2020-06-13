@@ -30,7 +30,7 @@ void generate_tables(unsigned char *table_plus,
 
 void main() {
   unsigned short i;
-  unsigned short err_cnt;
+  unsigned short err_cnt=0;
 
   generate_tables(gen_table_plus, gen_table_minus);
 
@@ -45,5 +45,5 @@ void main() {
       err_cnt++;
     }
   }
-  printf("Errors count: %d\n", err_cnt);
+  printf("Errors count: %u\n", err_cnt);
 }
