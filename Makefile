@@ -7,4 +7,4 @@ run: verify_multiply_tables
 	x64sc -autostartprgmode 1 $<
 
 clean:
-	rm -f verify_multiply_tables.c generate_multiply_tables.c
+	rm -f verify_multiply_tables.o generate_multiply_tables.o verify_multiply_tables
