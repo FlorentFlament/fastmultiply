@@ -1,8 +1,10 @@
-all:
-	cl65 -t c64 mul_tables.c
+all: verify_multiply_tables
 
-run:
-	x64sc -autostartprgmode 1 mul_tables
+verify_multiply_tables: verify_multiply_tables.c generate_multiply_tables.c
+	cl65 -t c64 $^
+
+run: verify_multiply_tables
+	x64sc -autostartprgmode 1 $<
 
 clean:
-	rm -f mul_tables mul_tables.o
+	rm -f verify_multiply_tables.c generate_multiply_tables.c
