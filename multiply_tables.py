@@ -1,43 +1,5 @@
 #!/usr/bin/env python3
 
-# A variant of the fast signed multiply by Steve Judd & George Taylor
-# From the c=hacking9.txt fanzine
-# http://www.ffd2.com/fridge/chacking/c=hacking9.txt
-# by Florent Flament
-
-# > Ah, now here is something we can fix.  Consider the following function:
-# > 
-# >       f(x) = x*x/4
-# > 
-# > Now notice that
-# > 
-# >       f(a+b) - f(a-b) = a*b
-# > 
-# > So here is the code to multiply two numbers together:
-# > 
-# >         * A*Y -> A  Signed, 8-bit result
-# > 
-# >       STA ZP1         ;ZP1 -- zero page pointer to table of g(x)
-# >       EOR #$FF
-# >       CLC
-# >       ADC #$01
-# >       STA ZP2         ;ZP2 also points to g(x)
-# >       LDA (ZP1),Y     ;g(Y+A)
-# >       SEC
-# >       SBC (ZP2),Y     ;g(Y-A)
-
-# Here is the computation we will perform:
-#
-# Given A in [0..255] and B in [0..255]
-# mul(A, B) = round(A*B/16) % 256
-#
-# We can't use B=0 - Results are incorrect (see below)
-#
-# Results +/-1 % 256 with 78% accurate results,
-# and the following distribution:
-# 0 51200
-# 1 7168
-# 255 7168
 class Multiplier:
     def __init__(self):
         # Tables of x**2/64 % 256
