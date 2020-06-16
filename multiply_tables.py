@@ -43,8 +43,8 @@ class Multiplier:
         # Tables of x**2/64 % 256
         # Technically speaking, the tables need to be 511 bytes long,
         # it's just more conveninent later one like that.
-        self.__table_plus = [ round(x**2/64) % 256 for x in range(0,512) ]
-        self.__table_minus = [ round(x**2/64) % 256 for x in range(-256,256) ]
+        self.__table_plus = [ int(x**2/64) % 256 for x in range(0,512) ]
+        self.__table_minus = [ int(x**2/64) % 256 for x in range(-256,256) ]
 
     def multiply(self, A, B):
         # f(a+b) - f(a-b) = a*b
@@ -61,8 +61,8 @@ class Multiplier:
     def errors(self):
         errs = {}
         for A in range(256):
-            for B in range(256):
-                r = round(A*B/16) % 256
+            for B in range(1,256):
+                r = int(A*B/16) % 256
                 m = self.multiply(A,B)
                 e = (r-m) % 256
                 errs[e] = errs.get(e, 0) + 1
