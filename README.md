@@ -1,6 +1,5 @@
 A variant of the fast signed multiply by Steve Judd & George Taylor
-From the c=hacking9.txt fanzine
-http://www.ffd2.com/fridge/chacking/c=hacking9.txt
+from the [c=hacking9.txt fanzine][1]
 
 ```
 > Ah, now here is something we can fix.  Consider the following function:
@@ -71,3 +70,5 @@ $ ./multiply_tables.py
 ```
 $ make clean
 ```
+
+[1]: http://www.ffd2.com/fridge/chacking/c=hacking9.txt
