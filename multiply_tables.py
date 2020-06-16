@@ -64,14 +64,14 @@ class Multiplier:
             for B in range(1,256):
                 r = int(A*B/16) % 256
                 m = self.multiply(A,B)
-                e = (r-m) % 256
+                e = (m-r) % 256
                 errs[e] = errs.get(e, 0) + 1
         return errs
 
     def dump_c_tables(self):
-        print("unsigned char ref_table_plus[] = {{{}}};".format(
+        print("\nunsigned char ref_table_plus[] = {{{}}};".format(
             ','.join((str(i) for i in self.__table_plus))))
-        print("unsigned char ref_table_minus[] = {{{}}};".format(
+        print("\nunsigned char ref_table_minus[] = {{{}}};".format(
             ','.join((str(i) for i in self.__table_minus))))
 
 
@@ -82,5 +82,4 @@ print("Errors distribution:")
 for k in sorted(errs.keys()):
     print(k, errs[k])
 
-print("\nC tables:")
 mul.dump_c_tables()

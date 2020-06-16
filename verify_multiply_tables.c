@@ -22,12 +22,12 @@ void main() {
     // ref_table_plus and ref_table_minus have the same size
 
     if (ref_table_plus[i] != multiply_table_plus[i]) {
-      printf("ref:%d gen:%d\n", ref_table_plus[i], multiply_table_plus[i]);
+      printf("i:%d + ref:%d gen:%d\n", i, ref_table_plus[i], multiply_table_plus[i]);
       err_cnt++;
     }
 
     if (ref_table_minus[i] != multiply_table_minus[i]) {
-      printf("ref:%d gen:%d\n", ref_table_minus[i], multiply_table_minus[i]);
+      printf("i:%d - ref:%d gen:%d\n", i, ref_table_minus[i], multiply_table_minus[i]);
       err_cnt++;
     }
   }
